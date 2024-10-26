@@ -41,10 +41,27 @@ export const saveCoach = async (req: CustomRequest, res: Response) => {
 export const welcome = async (req: CustomRequest, res: Response) => {
   try {
     const userId = req.token._id;
-    const user = await User.findOne({ _id: userId });
     console.log(`User ID: ${userId}`);
+    const user = await User.findOne({ _id: userId });
+    if (!user) return res.status(400).json({ msg: "User not found" });
     const coach = user.coach;
     res.status(200).json({ coach: coach });
+  } catch (error) {
+    res.status(400).json({ msg: error });
+    console.log(error);
+  }
+};
+
+export const setGender = async (req: CustomRequest, res: Response) => {
+  try {
+    const userId = req.token._id;
+    console.log(`User ID: ${userId}`);
+    const { gender } = req.body;
+    const user = await User.findOne({ _id: userId });
+    if (!user) return res.status(400).json({ msg: "User not found" });
+    user.gender = gender;
+    await user.save();
+    res.status(201).json({ gender: user.gender });
   } catch (error) {
     res.status(400).json({ msg: error });
     console.log(error);

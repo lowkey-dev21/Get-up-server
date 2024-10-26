@@ -3,6 +3,7 @@ import {
   starter,
   saveCoach,
   welcome,
+  setGender,
 } from "../../controllers/home/starter/starter.controller";
 
 const asyncHandler =
@@ -16,5 +17,6 @@ const router = express.Router();
 router.get("/starter", asyncHandler(starter));
 router.post("/starter/coach", asyncHandler(saveCoach));
 router.get("/starter/welcome", asyncHandler(welcome));
+router.post("/starter/gender", asyncHandler(setGender));
 
 export default router;

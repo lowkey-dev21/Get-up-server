@@ -7,6 +7,7 @@ export interface IUser extends Document {
   _doc?: string;
   starter?: boolean;
   coach?: string;
+  gender?: string;
 }
 
 const userSchema: Schema<IUser> = new mongoose.Schema({
@@ -27,6 +28,9 @@ const userSchema: Schema<IUser> = new mongoose.Schema({
     default: true,
   },
   coach: {
+    type: String,
+  },
+  gender: {
     type: String,
   },
 });
