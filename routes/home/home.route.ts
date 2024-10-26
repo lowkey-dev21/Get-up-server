@@ -1,4 +1,9 @@
 import express, { Response, Request, NextFunction } from "express";
+import {
+  starter,
+  saveCoach,
+  welcome,
+} from "../../controllers/home/starter/starter.controller";
 
 const asyncHandler =
   (fn: any) => (req: Request, res: Response, next: NextFunction) => {
@@ -7,6 +12,9 @@ const asyncHandler =
 
 const router = express.Router();
 
-router.get("/home");
+// starter
+router.get("/starter", asyncHandler(starter));
+router.post("/starter/coach", asyncHandler(saveCoach));
+router.get("/starter/welcome", asyncHandler(welcome));
 
 export default router;

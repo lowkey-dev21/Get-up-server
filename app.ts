@@ -5,6 +5,8 @@ import "dotenv/config";
 import { mongoDB } from "./db/db";
 import userRoute from "./routes/auth/user.route";
 import morgan from "morgan";
+import { verifyJWT } from "./middleware/veryJWT";
+import homeRoute from "./routes/home/home.route";
 
 const PORT: string | undefined = process.env.PORT;
 const app: Express = express();
@@ -18,7 +20,10 @@ if (process.env.NODE_SERVER === "development") {
   app.use(morgan("dev"));
 }
 
+// routes
 app.use("/auth", userRoute);
+app.use(verifyJWT);
+app.use("/home", homeRoute);
 
 try {
   mongoDB();

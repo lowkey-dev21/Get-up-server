@@ -5,6 +5,8 @@ export interface IUser extends Document {
   email: string;
   password: string;
   _doc?: string;
+  starter?: boolean;
+  coach?: string;
 }
 
 const userSchema: Schema<IUser> = new mongoose.Schema({
@@ -19,6 +21,13 @@ const userSchema: Schema<IUser> = new mongoose.Schema({
   password: {
     type: String,
     require: true,
+  },
+  starter: {
+    type: Boolean,
+    default: true,
+  },
+  coach: {
+    type: String,
   },
 });
 

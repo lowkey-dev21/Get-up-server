@@ -112,5 +112,3 @@ export const loginUser = async (req: Request, res: Response) => {
     res.status(401).json({ msg: "Error occured," + error });
   }
 };
-
-
